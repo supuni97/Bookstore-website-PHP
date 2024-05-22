@@ -59,15 +59,15 @@ define("APPURL", "http://localhost:3000/bookstore")
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="http://localhost:3000/auth/logout.php">Logout</a></li>
                             </ul>
                         </li>
                     <?php else : ?>
                         <li class="nav-item">
-                            <a class="nav-link  text-white" href="<?php echo APPURL; ?>/auth/login.php">Login</a>
+                            <a class="nav-link  text-white" href="http://localhost:3000/auth/login.php">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  text-white" href="<?php echo APPURL; ?>/auth/register.php">Register</a>
+                            <a class="nav-link  text-white" href="http://localhost:3000/auth/auth/register.php">Register</a>
                         </li>
                     <?php endif; ?>
                 </ul>
