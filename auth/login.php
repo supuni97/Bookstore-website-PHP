@@ -18,7 +18,12 @@ if (isset($_POST['submit'])) {
         if($login->rowCount()>0){
             
             if(password_verify($password, $fetch['mypassword'])){
-                echo "Logged In";
+                
+                $_SESSION['username'] = $fetch['username'];
+                $_SESSION['user_id'] = $fetch['id'];
+                
+                header("location: ".APPURL."");
+
             }else{
                 echo  "<script>alert('Email or Password are wrong');</script>";
             }

@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+define("APPURL", "http://localhost:3000/bookstore")
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
