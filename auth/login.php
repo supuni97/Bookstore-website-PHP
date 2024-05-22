@@ -47,9 +47,7 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
             <button class="w-100 btn btn-lg btn-primary mt-4 mb-4" type="submit" name="submit">login</button>
-
         </form>
     </div>
 </div>
-
 <?php require "../includes/footer.php"; ?>
