@@ -26,10 +26,16 @@ if(isset($_POST['submit'])){
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $stmt = $conn->prepare("SELECT * FROM products WHERE status=1 AND id=:id");
-    $stmt->execute(['id' => $id]);
 
-    $product = $stmt->fetch(PDO::FETCH_OBJ);
+    //checkin for product in cart
+    $select = $conn->query(("SELECT * FROM cart WHERE pro_id = '$id' AND user_id='$_SESSION[user_id]' "));
+    $select->execute();
+
+    //getting data for every product
+    $row = $conn->prepare("SELECT * FROM products WHERE status=1 AND id=:id");
+    $row->execute(['id' => $id]);
+
+    $product = $row->fetch(PDO::FETCH_OBJ);
     if (!$product) {
         echo "Product not found";
         exit;
@@ -93,9 +99,13 @@ if (isset($_GET['id'])) {
                                 </div>
 
                                 <div class="cart mt-4 align-items-center">
-                                    <button class="btn btn-primary text-uppercase mr-2 px-4" name="submit" type="submit">
-                                        <i class="fas fa-shopping-cart"></i> Add to cart
-                                    </button>
+                                    <?php if($select-> rowCount() >0 ): ?>
+                                    <button class="btn btn-primary text-uppercase mr-2 px-4" id="submit" name="submit" disabled type="submit"><i class="fas fa-shopping-cart"></i> Added to cart</button>
+                                   
+                                    <?php else: ?>
+                                    <button class="btn btn-primary text-uppercase mr-2 px-4" id="submit" name="submit" type="submit"><i class="fas fa-shopping-cart"></i> Add to cart</button>
+
+                                    <?php endif; ?>
                                 </div>
                             </form>
                         </div>
@@ -120,6 +130,7 @@ if (isset($_GET['id'])) {
                 data: formdata,
                 success: function() {
                     alert("Added to cart successfully");
+                    $("#submit").html(" <i class='fas fa-shopping-cart'></i> Add to cart").prop("disabled", true);
                 }
             });
         });
