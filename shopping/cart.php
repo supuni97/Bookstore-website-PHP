@@ -19,7 +19,6 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
             <div class="p-5">
               <div class="d-flex justify-content-between align-items-center mb-5">
                 <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-                <h6 class="mb-0 text-muted">2 items</h6>
               </div>
 
 
@@ -56,7 +55,7 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
 
                 </tbody>
               </table>
-              <a href="#" class="btn btn-success text-white"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+              <a href="http://localhost:3000/bookstore" class="btn btn-success text-white"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
             </div>
           </div>
           <div class="col-lg-4 bg-grey">
