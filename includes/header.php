@@ -67,7 +67,7 @@ define("APPURL", "http://localhost:3000/bookstore")
                             <a class="nav-link  text-white" href="http://localhost:3000/auth/login.php">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  text-white" href="http://localhost:3000/auth/auth/register.php">Register</a>
+                            <a class="nav-link  text-white" href="http://localhost:3000/auth/register.php">Register</a>
                         </li>
                     <?php endif; ?>
                 </ul>
