@@ -46,7 +46,7 @@ define("APPURL", "http://localhost:3000/bookstore")
                             <a class="nav-link active  text-white" aria-current="page" href="<?php echo APPURL; ?>/categories/index.php">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active  text-white" aria-current="page" href="<?php echo APPURL; ?>/shopping/cart.php"><i class="fas fa-shopping-cart"></i>(2)</a>
+                            <a class="nav-link active  text-white" aria-current="page" href="http://localhost:3000/shopping/cart.php"><i class="fas fa-shopping-cart"></i>(2)</a>
                         </li>
 
                         <li class="nav-item dropdown">
