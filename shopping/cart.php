@@ -8,6 +8,14 @@ $products->execute();
 
 $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
 
+if(isset($_POST['submit'])){
+  $price = $_POST['price'];
+
+  $_SESSION['price'] = $price;
+
+  header("location: checkout.php");
+}
+
 ?>
 
 <div class="row d-flex justify-content-center align-items-center h-100 mt-5 mt-5">
@@ -37,30 +45,30 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
                 </thead>
                 <tbody>
 
-                <?php if(count($allProducts)>0): ?>
+                  <?php if (count($allProducts) > 0) : ?>
 
-                  <?php foreach ($allProducts as $product) : ?>
-                    <tr>
-                      <th scope="row"><?php echo $product->id; ?></th>
-                      <td><img width="100" height="100" src="../images/<?php echo $product->pro_image; ?>" class="img-fluid rounded-3" alt="Cotton T-shirt">
-                      </td>
-                      <td><?php echo $product->pro_name; ?></td>
-                      <td class="pro_price"><?php echo $product->pro_price; ?></td>
-                      <td><input id="form1" min="1" name="quantity" value="<?php echo $product->pro_amount; ?>" type="number" class="form-control form-control-sm pro_amount" /></td>
-                      <td class="total_price"><?php echo $product->pro_price * $product->pro_amount; ?></td>
-                      <td><button value="<?php echo $product->id; ?>" class="btn-update btn-warning text-white"><i class="fas fa-pen"></i> </button></td>
+                    <?php foreach ($allProducts as $product) : ?>
+                      <tr>
+                        <th scope="row"><?php echo $product->id; ?></th>
+                        <td><img width="100" height="100" src="../images/<?php echo $product->pro_image; ?>" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                        </td>
+                        <td><?php echo $product->pro_name; ?></td>
+                        <td class="pro_price"><?php echo $product->pro_price; ?></td>
+                        <td><input id="form1" min="1" name="quantity" value="<?php echo $product->pro_amount; ?>" type="number" class="form-control form-control-sm pro_amount" /></td>
+                        <td class="total_price"><?php echo $product->pro_price * $product->pro_amount; ?></td>
+                        <td><button value="<?php echo $product->id; ?>" class="btn-update btn-warning text-white"><i class="fas fa-pen"></i> </button></td>
 
-                      <td><button value="<?php echo $product->id; ?>" class="btn-delete btn btn-danger text-white"><i class="fas fa-trash-alt"></i> </button></td>
+                        <td><button value="<?php echo $product->id; ?>" class="btn-delete btn btn-danger text-white"><i class="fas fa-trash-alt"></i> </button></td>
 
-                    </tr>
+                      </tr>
 
-                  <?php endforeach; ?>
-                  <?php else: ?>
+                    <?php endforeach; ?>
+                  <?php else : ?>
 
                     <div class="alert alert-danger gb-danger text-white">
                       There is no items in the cart
                     </div>
-                    <?php endif; ?>
+                  <?php endif; ?>
 
                 </tbody>
               </table>
@@ -73,14 +81,15 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
               <hr class="my-4">
 
 
+              <form method="post" action="cart.php">
+                <div class="d-flex justify-content-between mb-5">
+                  <h5 class="text-uppercase">Total price</h5>
+                      <h5 class="full_price"></h5>
+                      <input class="inp_price" type="text" name="price">
+                </div>
 
-              <div class="d-flex justify-content-between mb-5">
-                <h5 class="text-uppercase">Total price</h5>
-                <h5 class="full_price"></h5>
-              </div>
-
-              <button type="button" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Checkout</button>
-
+                <button type="submit" name="submit" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Checkout</button>
+              </form>
             </div>
           </div>
         </div>
@@ -178,7 +187,7 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
       })
     });
 
-  
+
 
     fetch();
 
@@ -190,6 +199,7 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
           sum += parseFloat($(this).text());
         });
         $(".full_price").html(sum + "$");
+        $(".inp_price").val(sum);
       }, 4000);
     }
 
