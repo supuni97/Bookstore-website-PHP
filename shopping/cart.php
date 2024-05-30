@@ -85,7 +85,7 @@ if(isset($_POST['submit'])){
                 <div class="d-flex justify-content-between mb-5">
                   <h5 class="text-uppercase">Total price</h5>
                       <h5 class="full_price"></h5>
-                      <input class="inp_price" type="text" name="price">
+                      <input class="inp_price" type="hidden" name="price">
                 </div>
 
                 <button type="submit" name="submit" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Checkout</button>
