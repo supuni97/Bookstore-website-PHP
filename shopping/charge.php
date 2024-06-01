@@ -44,6 +44,8 @@ if(isset($_POST['email'])){
             'price' => $price,
             'user_id'=> $user_id,
         ]);
+
+        header("location: http://localhost:3000/download.php");
     }
 }
 ?>
