@@ -88,7 +88,7 @@ if(isset($_POST['submit'])){
                       <input class="inp_price" type="hidden" name="price">
                 </div>
 
-                <button type="submit" name="submit" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Checkout</button>
+                <button type="submit" name="submit" class="checkout btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Checkout</button>
               </form>
             </div>
           </div>
@@ -200,6 +200,13 @@ if(isset($_POST['submit'])){
         });
         $(".full_price").html(sum + "$");
         $(".inp_price").val(sum);
+
+        if( $(".inp_price").val() >0){
+          $(".checkout").show();
+        } else {
+          $(".checkout").hide();
+        }
+
       }, 4000);
     }
 
