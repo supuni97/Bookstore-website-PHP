@@ -4,26 +4,32 @@
 
 <?php session_start(); ?>
 
-<?php 
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
+    header('HTTP/1.0 403 Forbidden', TRUE, 403);
+    die(header('location: http://localhost:3000/bookstore'));
+}
+?>
 
-if(isset($_POST['email'])){
+<?php
+
+if (isset($_POST['email'])) {
 
     \Stripe\Stripe::setApiKey($secret_key);
 
     $charge = \Stripe\Charge::create([
 
-        'source'=> $_POST['stripeToken'],
+        'source' => $_POST['stripeToken'],
         'amount' => $_SESSION['price'] * 100,
-        'currency'=> 'usd',
+        'currency' => 'usd',
 
     ]);
 
     echo "paid";
 
     if (empty($_POST['email']) || empty($_POST['username']) || empty($_POST['fname']) || empty($_POST['lname'])) {
-       
-        echo "<script>alert('One or more inputs are empty');</script>";
 
+        echo "<script>alert('One or more inputs are empty');</script>";
     } else {
 
         $email = $_POST['email'];
@@ -42,7 +48,7 @@ if(isset($_POST['email'])){
             'lname' => $lname,
             'token' => $token,
             'price' => $price,
-            'user_id'=> $user_id,
+            'user_id' => $user_id,
         ]);
 
         header("location: http://localhost:3000/download.php");
