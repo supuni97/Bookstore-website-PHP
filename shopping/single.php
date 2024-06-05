@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
         exit;
     }
 } else {
-    echo "404";
+    header("location:http://localhost:3000/404.php");
     exit;
 }
 ?>

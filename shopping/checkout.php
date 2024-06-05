@@ -1,6 +1,14 @@
 <?php require "../includes/header.php"; ?>
 <?php require "../config/config.php"; ?>
 
+<?php
+
+if (isset($_SESSION['username'])) {
+  header("location:".APPURL."");
+}
+
+?>
+
 <div class="container">
   <!-- Heading -->
   <h2 class="my-5 h2 text-center">Checkout</h2>

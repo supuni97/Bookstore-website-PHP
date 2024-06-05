@@ -10,6 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && realpath(__FILE__) == realpath($_SERV
 
 <?php
 
+if (isset($_SESSION['username'])) {
+  header("location:".APPURL."");
+}
+
 if (isset($_POST['delete'])) {
 
     $delete = $conn->prepare("DELETE FROM cart WHERE user_id='$_SESSION[user_id]'");

@@ -17,6 +17,11 @@ if(isset($_POST['delete'])){
     $delete->execute();
 }
 
+
+if (isset($_SESSION['username'])) {
+  header("location:".APPURL."");
+}
+
 ?>
 
 <?php require "../includes/footer.php"; ?>

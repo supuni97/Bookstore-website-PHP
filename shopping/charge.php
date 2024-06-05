@@ -9,9 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && realpath(__FILE__) == realpath($_SERV
     header('HTTP/1.0 403 Forbidden', TRUE, 403);
     die(header('location: http://localhost:3000/bookstore'));
 }
-?>
 
-<?php
+if (isset($_SESSION['username'])) {
+    header("location:" .APPURL. "");
+}
 
 if (isset($_POST['email'])) {
 

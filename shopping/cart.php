@@ -3,12 +3,20 @@
 
 <?php
 
+if (isset($_SESSION['username'])) {
+  header("location:".APPURL."");
+}
+
+?>
+
+<?php
+
 $products = $conn->query("SELECT * FROM cart WHERE user_id='$_SESSION[user_id]'");
 $products->execute();
 
 $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
   $price = $_POST['price'];
 
   $_SESSION['price'] = $price;
@@ -84,8 +92,8 @@ if(isset($_POST['submit'])){
               <form method="post" action="cart.php">
                 <div class="d-flex justify-content-between mb-5">
                   <h5 class="text-uppercase">Total price</h5>
-                      <h5 class="full_price"></h5>
-                      <input class="inp_price" type="hidden" name="price">
+                  <h5 class="full_price"></h5>
+                  <input class="inp_price" type="hidden" name="price">
                 </div>
 
                 <button type="submit" name="submit" class="checkout btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Checkout</button>
@@ -201,7 +209,7 @@ if(isset($_POST['submit'])){
         $(".full_price").html(sum + "$");
         $(".inp_price").val(sum);
 
-        if( $(".inp_price").val() >0){
+        if ($(".inp_price").val() > 0) {
           $(".checkout").show();
         } else {
           $(".checkout").hide();
